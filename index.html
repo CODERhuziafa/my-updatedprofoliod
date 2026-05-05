@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Huzaifa | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050A0F;
+    --surface: #0D1A26;
+    --surface2: #112233;
+    --accent: #00D4FF;
+    --accent2: #7B5EA7;
+    --accent3: #00FF88;
+    --text: #E8F4FF;
+    --muted: #6B8BA4;
+    --border: rgba(0, 212, 255, 0.15);
+    --glow: 0 0 40px rgba(0, 212, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ANIMATED BACKGROUND */
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; animation-delay: 0s; }
+  .orb2 { width: 400px; height: 400px; background: var(--accent2); bottom: 20%; left: -150px; animation-delay: -4s; }
+  .orb3 { width: 300px; height: 300px; background: var(--accent3); bottom: -50px; right: 20%; animation-delay: -8s; }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 40px) scale(1.05); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(0, 212, 255, 0.05);
+    width: fit-content;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 550px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .stat {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+  }
+
+  .btn-outline {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: fadeIn 1s 1s ease both;
+  }
+
+  .scroll-line::after {
+    content: '';
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(0.8); } }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* SECTION HEADERS */
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-avatar {
+    position: relative;
+  }
+
+  .avatar-frame {
+    width: 320px;
+    height: 380px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,94,167,0.1));
+  }
+
+  .avatar-initials {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+  }
+
+  .avatar-badge {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text span:first-child {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent3);
+  }
+
+  .badge-text span:last-child {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .about-content p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+
+  .tag {
+    padding: 6px 14px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .skill-card:hover::before { transform: scaleX(1); }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: var(--glow);
+  }
+
+  .skill-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    position: relative;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .skill-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: var(--glow);
+  }
+
+  .edu-year-box {
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,94,167,0.1));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .edu-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .edu-school {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .edu-degree {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .edu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--accent3);
+    font-weight: 600;
+  }
+
+  /* GOALS */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .goal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+  }
+
+  .goal-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .goal-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(123, 94, 167, 0.05));
+    border-color: rgba(0, 212, 255, 0.25);
+  }
+
+  .goal-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .goal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .goal-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.1);
+  }
+
+  .contact-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.6rem;
+  }
+
+  .contact-icon-wrap.insta { background: rgba(225, 48, 108, 0.12); border: 1px solid rgba(225, 48, 108, 0.25); }
+  .contact-icon-wrap.wa { background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.25); }
+  .contact-icon-wrap.email { background: rgba(234, 67, 53, 0.12); border: 1px solid rgba(234, 67, 53, 0.25); }
+
+  .contact-card:hover .contact-icon-wrap.insta { background: rgba(225, 48, 108, 0.22); }
+  .contact-card:hover .contact-icon-wrap.wa { background: rgba(37, 211, 102, 0.22); }
+  .contact-card:hover .contact-icon-wrap.email { background: rgba(234, 67, 53, 0.22); }
+
+  /* FEEDBACK */
+  .feedback-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feedback-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+  }
+
+  .feedback-wrap .section-header { margin-bottom: 2rem; }
+
+  .feedback-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted); opacity: 0.6; }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    background: rgba(0, 212, 255, 0.03);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .star-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .star {
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.15s;
+    user-select: none;
+  }
+
+  .star:hover, .star.active { color: #FFD700; transform: scale(1.2); }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.3s;
+    letter-spacing: 0.02em;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0, 212, 255, 0.35); }
+
+  .success-msg {
+    display: none;
+    padding: 14px 20px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 10px;
+    color: var(--accent3);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    grid-column: 1 / -1;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .divider hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MH.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Available for Opportunities
+  </div>
+  <h1>
+    Muhammad
+    <span>Huzaifa</span>
+  </h1>
+  <p class="hero-desc">
+    Aspiring Medical Professional · Future Doctor · A-Level Student at APSACS Zamzama, Nowshera — driven by science, curiosity, and a passion to heal.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">93%</span>
+      <span class="stat-label">Matriculation Score</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1st</span>
+      <span class="stat-label">Year (F.Sc Pre-Medical)</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">MBBS</span>
+      <span class="stat-label">Future Goal</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+    <a href="#about" class="btn-outline">Learn More</a>
+  </div>
+  <div class="scroll-line">Scroll</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-avatar">
+      <div class="avatar-frame">
+        <span class="avatar-initials">MH</span>
+      </div>
+      <div class="avatar-badge">
+        <span class="badge-icon">🏆</span>
+        <div class="badge-text">
+          <span>93%</span>
+          <span>Matric Score</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-header">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">Student. Learner.<br>Future Doctor.</h2>
+      </div>
+      <p>
+        Hi! I'm Muhammad Huzaifa, a dedicated and academically excellent student at APSACS Zamzama, Nowshera. I secured an outstanding 93% in my Matriculation exams and am now pursuing F.Sc Pre-Medical in my 1st year.
+      </p>
+      <p>
+        My dream is to become a Doctor — serving people, advancing healthcare in Pakistan, and making a real difference in my community. I believe in hard work, continuous learning, and staying curious.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Pre-Medical</span>
+        <span class="tag">Biology</span>
+        <span class="tag">Chemistry</span>
+        <span class="tag">Physics</span>
+        <span class="tag">Mathematics</span>
+        <span class="tag">APSACS Nowshera</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-tag">Capabilities</span>
+    <h2 class="section-title">Skills & Strengths</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <span class="skill-icon">🔬</span>
+      <div class="skill-name">Biology & Life Sciences</div>
+      <div class="skill-desc">Strong foundation in human anatomy, genetics, cell biology, and medical concepts essential for medicine.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 92%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-icon">⚗️</span>
+      <div class="skill-name">Chemistry</div>
+      <div class="skill-desc">Proficient in organic, inorganic, and physical chemistry — the backbone of pharmaceutical sciences.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-icon">⚡</span>
+      <div class="skill-name">Physics & Mathematics</div>
+      <div class="skill-desc">Strong analytical and numerical skills applied to scientific problem-solving and research.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-icon">🧠</span>
+      <div class="skill-name">Critical Thinking</div>
+      <div class="skill-desc">Exceptional ability to analyze complex problems, reason logically, and devise effective solutions.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-icon">💬</span>
+      <div class="skill-name">Communication</div>
+      <div class="skill-desc">Clear, empathetic communicator — a vital skill for patient interaction and teamwork in healthcare.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 87%"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-icon">📚</span>
+      <div class="skill-name">Academic Excellence</div>
+      <div class="skill-desc">Consistent high achiever with excellent study habits, time management, and dedication to learning.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-tag">Academic Journey</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+
+  <div class="edu-card reveal">
+    <div class="edu-year-box">
+      <span class="edu-year">2024–Present</span>
+    </div>
+    <div>
+      <div class="edu-school">APSACS Zamzama, Nowshera</div>
+      <div class="edu-degree">F.Sc Pre-Medical — 1st Year</div>
+      <span class="edu-badge">📌 Currently Enrolled</span>
+    </div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div class="edu-year-box">
+      <span class="edu-year">2024</span>
+    </div>
+    <div>
+      <div class="edu-school">Matriculation (SSC)</div>
+      <div class="edu-degree">Secondary School Certificate — Science Group</div>
+      <span class="edu-badge">🏆 93% — Outstanding Achievement</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- GOALS -->
+<section id="goals">
+  <div class="section-header reveal">
+    <span class="section-tag">Future Vision</span>
+    <h2 class="section-title">My Goals & Ambitions</h2>
+  </div>
+  <div class="goals-grid">
+    <div class="goal-card featured reveal">
+      <div class="goal-num">MBBS</div>
+      <div class="goal-title">Become a Doctor 🩺</div>
+      <div class="goal-desc">My ultimate ambition is to earn an MBBS degree and serve as a medical doctor — providing quality healthcare to patients, contributing to medical research, and making a positive impact in Pakistan's healthcare system. I aim to be a compassionate, skilled, and knowledgeable physician.</div>
+    </div>
+    <div class="goal-card reveal">
+      <div class="goal-num">MDCAT</div>
+      <div class="goal-title">Ace Medical Entrance</div>
+      <div class="goal-desc">Preparing rigorously for MDCAT to secure admission in one of Pakistan's top medical colleges.</div>
+    </div>
+    <div class="goal-card reveal">
+      <div class="goal-num">FSc</div>
+      <div class="goal-title">Excel in F.Sc</div>
+      <div class="goal-desc">Achieve outstanding marks in F.Sc Pre-Medical, maintaining the academic excellence I've built so far.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal" style="text-align: center;">
+    <span class="section-tag">Let's Connect</span>
+    <h2 class="section-title">Get in Touch</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <!-- Instagram -->
+    <a href="https://instagram.com/mr_cool._.64" target="_blank" class="contact-card">
+      <div class="contact-icon-wrap insta">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f09433"/>
+              <stop offset="25%" stop-color="#e6683c"/>
+              <stop offset="50%" stop-color="#dc2743"/>
+              <stop offset="75%" stop-color="#cc2366"/>
+              <stop offset="100%" stop-color="#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)" stroke-width="1.8" fill="none"/>
+          <circle cx="12" cy="12" r="4.5" stroke="url(#ig-grad)" stroke-width="1.8" fill="none"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="url(#ig-grad)"/>
+        </svg>
+      </div>
+      <div class="contact-label">Instagram</div>
+      <div class="contact-value">@mr_cool._.64</div>
+    </a>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/923321913274" target="_blank" class="contact-card">
+      <div class="contact-icon-wrap wa">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.528 3.654 1.444 5.157L2 22l4.946-1.42A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" stroke="#25D366" stroke-width="1.6" fill="none"/>
+          <path d="M8.5 9c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5l.5 1.5c.1.28-.02.6-.28.74l-.72.41a6.5 6.5 0 003.35 3.35l.41-.72c.14-.26.46-.38.74-.28l1.5.5c.28.1.5.42.5.5v1c0 .28-.22.5-.5.5C10.57 16.5 7.5 13.43 7.5 9.5c0-.28.22-.5.5-.5h.5z" fill="#25D366"/>
+        </svg>
+      </div>
+      <div class="contact-label">WhatsApp</div>
+      <div class="contact-value">+92 332 191 3274</div>
+    </a>
+    <!-- Gmail -->
+    <a href="mailto:fayazhuzaifa7@gmail.com" class="contact-card">
+      <div class="contact-icon-wrap email">
+        <svg width="30" height="26" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2h20v16H2z" rx="2" stroke="#EA4335" stroke-width="1.5" fill="none"/>
+          <path d="M2 2l10 9 10-9" stroke="#EA4335" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M2 18l7-7M22 18l-7-7" stroke="#EA4335" stroke-width="1.4" stroke-linecap="round" opacity="0.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="contact-label">Gmail</div>
+      <div class="contact-value">fayazhuzaifa7@gmail.com</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- FEEDBACK -->
+<div class="feedback-section">
+  <div class="feedback-wrap reveal">
+    <div class="section-header">
+      <span class="section-tag">Leave a Message</span>
+      <h2 class="section-title">Connect & Feedback</h2>
+    </div>
+    <div class="feedback-form" id="feedbackForm">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="f-name" placeholder="e.g. Ali Hassan" />
+      </div>
+      <div class="form-group">
+        <label>Your Email</label>
+        <input type="email" id="f-email" placeholder="yourname@email.com" />
+      </div>
+      <div class="form-group full">
+        <label>Subject</label>
+        <input type="text" id="f-subject" placeholder="What's this about?" />
+      </div>
+      <div class="form-group full">
+        <label>Message / Feedback</label>
+        <textarea id="f-msg" placeholder="Write your message or feedback for Huzaifa here..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label>Rate this Portfolio</label>
+        <div class="star-row" id="starRow">
+          <span class="star" data-v="1">★</span>
+          <span class="star" data-v="2">★</span>
+          <span class="star" data-v="3">★</span>
+          <span class="star" data-v="4">★</span>
+          <span class="star" data-v="5">★</span>
+        </div>
+      </div>
+      <div class="form-group full">
+        <button class="submit-btn" onclick="submitFeedback()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Send Message
+        </button>
+        <div class="success-msg" id="successMsg">✅ Thank you! Your message has been sent to Huzaifa. He will get back to you soon.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Crafted with passion by <span>Muhammad Huzaifa</span> · APSACS Zamzama, Nowshera · 2025</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5;">Future Doctor · Academic Excellence · 93% Matric</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', function() {
+      const val = parseInt(this.dataset.v);
+      document.querySelectorAll('.star').forEach((s, i) => {
+        s.classList.toggle('active', i < val);
+      });
+      document.getElementById('starRow').dataset.rating = val;
+    });
+    star.addEventListener('mouseover', function() {
+      const val = parseInt(this.dataset.v);
+      document.querySelectorAll('.star').forEach((s, i) => {
+        s.style.color = i < val ? '#FFD700' : '';
+      });
+    });
+    star.addEventListener('mouseout', function() {
+      document.querySelectorAll('.star').forEach(s => {
+        s.style.color = '';
+      });
+    });
+  });
+
+  function submitFeedback() {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const msg = document.getElementById('f-msg').value.trim();
+    if (!name || !email || !msg) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+    const subject = encodeURIComponent(document.getElementById('f-subject').value || 'Portfolio Feedback');
+    const rating = document.getElementById('starRow').dataset.rating || 'Not rated';
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nRating: ${rating}/5 stars\n\n${msg}`);
+    window.location.href = `mailto:fayazhuzaifa7@gmail.com?subject=${subject}&body=${body}`;
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-subject').value = '';
+    document.getElementById('f-msg').value = '';
+    document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
